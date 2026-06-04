@@ -165,6 +165,56 @@
   .cbtn.next{right:-6px}
   @media(max-width:600px){.cbtn{width:36px;height:36px;font-size:1.2rem}}
 
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:1rem 1.4rem;margin-bottom:1.6rem;
+  }
+  .toolbar__title{font-size:1.2rem}
+  .sortbtn{
+    display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+    background:var(--ocean-700);color:#fff;border:none;font-weight:600;font-size:.92rem;
+    padding:.7rem 1.25rem;border-radius:100px;transition:background .15s,transform .15s;
+  }
+  .sortbtn:hover{background:var(--ocean-900);transform:translateY(-1px)}
+  .sortbtn.active{background:var(--coral)}
+
+  /* ---------- COMPARE TABLE ---------- */
+  .table-wrap{
+    overflow-x:auto;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:3rem;
+  }
+  .ctable{width:100%;border-collapse:collapse;min-width:640px}
+  .ctable th{
+    text-align:left;font-family:'Fraunces',serif;font-size:.78rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--ocean-700);background:#f1f6f5;
+    padding:.9rem 1.1rem;border-bottom:1px solid var(--line);position:sticky;top:0;
+  }
+  .ctable td{padding:1rem 1.1rem;border-bottom:1px solid var(--line);vertical-align:top;font-size:.92rem}
+  .ctable tr:last-child td{border-bottom:none}
+  .ctable tbody tr:hover{background:#fafdfc}
+  .ct-name a{text-decoration:none;color:inherit}
+  .ct-name strong{display:block;font-size:1rem;color:var(--ink)}
+  .ct-name a:hover strong{color:var(--ocean-500)}
+  .ct-name span{display:block;color:var(--muted);font-size:.82rem;margin-top:.15rem}
+  .ct-price{white-space:nowrap;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--ocean-900)}
+  .ct-price span{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:.78rem;color:var(--muted)}
+  .ct-note ul{margin:0;padding-left:1.05rem}
+  .ct-note li{margin:.2rem 0;color:#34474c;line-height:1.45}
+
+  /* ---------- NOTE CALLOUT ---------- */
+  .note{
+    background:#fff7ed;border:1px solid #f5d9b8;border-left:4px solid var(--coral);
+    border-radius:12px;padding:.9rem 1.1rem;margin:1.3rem 0;
+  }
+  .note__label{
+    display:inline-block;font-weight:700;font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.12em;color:#c2410c;margin-bottom:.35rem;
+  }
+  .note ul{margin:0;padding-left:1.1rem}
+  .note li{margin:.22rem 0;color:#7c4a1e;font-size:.93rem}
+
   /* ---------- LIGHTBOX ---------- */
   .lb{position:fixed;inset:0;background:rgba(6,30,36,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:1.5rem}
   .lb.open{display:flex}
@@ -189,7 +239,14 @@
   <div class="count-pill" id="countPill">1 szállás</div>
 </header>
 
-<main class="wrap" id="list"></main>
+<main class="wrap">
+  <div class="toolbar">
+    <h2 class="toolbar__title">Összehasonlító táblázat</h2>
+    <button id="sortBtn" class="sortbtn" type="button">↑ Rendezés ár szerint</button>
+  </div>
+  <div id="tableWrap" class="table-wrap"></div>
+  <div id="list"></div>
+</main>
 
 <footer>
   Az árak és adatok tájékoztató jellegűek. A képek a szállás hivatalos oldaláról származnak.<br>
@@ -660,19 +717,66 @@ const ACCOMMODATIONS = [
   }
 ];
 
+/* ===================== MEGJEGYZÉSEK ===================== */
+const NOTES = {
+  "Hovima la Pinta (Excellence)": [
+    "Sokat beszéltük róla",
+    "Elméletileg jó kilátás, de a képek nem biztosak (írnék nekik, hogy jó helyet kapjunk)",
+    "A reggeli a különleges étteremben lenne"
+  ],
+  "Hovima la Pinta (Superior)": [
+    "La Pinta kicsit kisebb szobája",
+    "Nagyjából ugyanaz, mint az Excellence",
+    "Nincs különleges éttermi reggeli, csak sima",
+    "Kicsit olcsóbb az Excellence-nél, de akkor már fizetnék többet"
+  ],
+  "Flamingo Beach Mate": [
+    "Képekről jónak tűnik a kilátás, de itt is kicsit bizonytalan"
+  ],
+  "Flamingo Suites Boutique Hotel": [
+    "Privát jakuzzi a teraszon",
+    "Viszont szerintem itt nem jó a kilátás, a házak eltakarják a tenger nagy részét cserébe"
+  ],
+  "Hovima Jardín Caleta": [
+    "Ez nagyon olcsó",
+    "Kilátás viszont féloldalas"
+  ],
+  "Royal Hideaway Corales Suites (Barceló)": [
+    "Nagyon modern",
+    "Szerintem top 3",
+    "5 csillagos cucc"
+  ],
+  "La Caleta Penthouse Costa Adeje": [
+    "Képek megtévesztőek lehetnek, kevés tenger látszik, nehéz eldönteni milyen a kilátás",
+    "Jakuzzi itt is van a teraszon, de nem biztos, hogy tengerre néz (szerintem nem)"
+  ],
+  "Home2Book Paradise Playa Las Vistas": [
+    "Ez is nagyon olcsó",
+    "Kilátás itt nagyon necces"
+  ],
+  "Parque Santiago II": [
+    "Semmi extra, középút"
+  ]
+};
+
 /* ===================== RENDER ===================== */
 const list = document.getElementById('list');
+const tableWrap = document.getElementById('tableWrap');
+const priceNum = a => parseInt(String(a.price).replace(/\D/g,''),10) || 0;
 
-ACCOMMODATIONS.forEach((a, ai) => {
+function cardHTML(a, ai){
   const specsHTML = a.specs.map(s =>
     `<span class="chip">${ICONS[s.icon]||''}${s.text}</span>`).join('');
   const featsHTML = a.features.map(f => `<li>${f}</li>`).join('');
   const galHTML = a.images.map((url, i) =>
     `<img loading="lazy" src="${url}" alt="${a.name} – ${a.room} kép ${i+1}" data-acc="${ai}" data-i="${i}">`
   ).join('');
-
-  list.insertAdjacentHTML('beforeend', `
-    <section class="acc">
+  const note = NOTES[a.name];
+  const noteHTML = note
+    ? `<div class="note"><span class="note__label">Megjegyzés</span><ul>${note.map(n=>`<li>${n}</li>`).join('')}</ul></div>`
+    : '';
+  return `
+    <section class="acc" id="acc-${ai}">
       <div class="acc__head">
         <div>
           <div class="acc__idx">Opció ${String(ai+1).padStart(2,'0')}</div>
@@ -689,6 +793,7 @@ ACCOMMODATIONS.forEach((a, ai) => {
       </div>
       <div class="acc__body">
         <p class="desc">${a.desc}</p>
+        ${noteHTML}
         <div class="specs">${specsHTML}</div>
         <h3 class="feat-title">Felszereltség &amp; szolgáltatások</h3>
         <ul class="feats">${featsHTML}</ul>
@@ -699,12 +804,49 @@ ACCOMMODATIONS.forEach((a, ai) => {
           <button class="cbtn next" type="button" aria-label="Tovább" data-dir="1">›</button>
         </div>
       </div>
-    </section>
-  `);
+    </section>`;
+}
+
+function tableHTML(order){
+  const rows = order.map(ai => {
+    const a = ACCOMMODATIONS[ai];
+    const note = NOTES[a.name] || [];
+    return `<tr>
+      <td class="ct-name"><a href="#acc-${ai}"><strong>${a.name}</strong><span>${a.room}</span></a></td>
+      <td class="ct-price">${a.price}<span>${a.breakdown}</span></td>
+      <td class="ct-note"><ul>${note.map(n=>`<li>${n}</li>`).join('')}</ul></td>
+    </tr>`;
+  }).join('');
+  return `<table class="ctable">
+    <thead><tr><th>Szállás</th><th>Ár</th><th>Megjegyzés</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+let sorted = false;
+function currentOrder(){
+  const idx = ACCOMMODATIONS.map((_, i) => i);
+  if(sorted) idx.sort((x, y) => priceNum(ACCOMMODATIONS[x]) - priceNum(ACCOMMODATIONS[y]));
+  return idx;
+}
+function render(){
+  const order = currentOrder();
+  tableWrap.innerHTML = tableHTML(order);
+  list.innerHTML = order.map(ai => cardHTML(ACCOMMODATIONS[ai], ai)).join('');
+  list.querySelectorAll('.track').forEach(t => t.addEventListener('scroll', syncCarousels, {passive:true}));
+  syncCarousels();
+}
+
+document.getElementById('sortBtn').addEventListener('click', e => {
+  sorted = !sorted;
+  e.currentTarget.classList.toggle('active', sorted);
+  e.currentTarget.innerHTML = sorted ? '✓ Ár szerint növekvő' : '↑ Rendezés ár szerint';
+  render();
 });
 
-document.getElementById('countPill').textContent =
-  ACCOMMODATIONS.length + (ACCOMMODATIONS.length === 1 ? ' szállás' : ' szállás');
+render();
+
+document.getElementById('countPill').textContent = ACCOMMODATIONS.length + ' szállás';
 
 /* ===================== LIGHTBOX ===================== */
 const lb = document.getElementById('lb');
@@ -750,10 +892,8 @@ function syncCarousels(){
     next.hidden = !overflow || track.scrollLeft >= max;
   });
 }
-document.querySelectorAll('.track').forEach(t => t.addEventListener('scroll', syncCarousels, {passive:true}));
 window.addEventListener('resize', syncCarousels);
 window.addEventListener('load', syncCarousels);
-syncCarousels();
 document.getElementById('lbClose').onclick = closeLB;
 document.getElementById('lbNext').onclick = () => move(1);
 document.getElementById('lbPrev').onclick = () => move(-1);
