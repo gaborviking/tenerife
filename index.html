@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyaralás opciók · Összehasonlító</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean-900:#06343f;
+    --ocean-700:#0c5566;
+    --ocean-500:#0e8ba0;
+    --ocean-300:#43c2cf;
+    --sand:#f5ead6;
+    --sand-deep:#e7c894;
+    --coral:#ff7a59;
+    --ink:#16292e;
+    --muted:#5f7479;
+    --paper:#fbfaf6;
+    --card:#ffffff;
+    --line:#e7e2d6;
+    --shadow:0 18px 50px -20px rgba(6,52,63,.35);
+    --radius:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(3rem,8vw,6rem) 1.5rem clamp(5rem,10vw,8rem);
+    text-align:center;
+    color:#fff;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 120% at 50% -10%, rgba(67,194,207,.55), transparent 55%),
+      linear-gradient(160deg, var(--ocean-900), var(--ocean-700) 55%, var(--ocean-500));
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:90px;
+    background:var(--paper);
+    clip-path:ellipse(75% 100% at 50% 100%);
+  }
+  .hero .eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:600;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+    padding:.5rem 1rem;border-radius:100px;backdrop-filter:blur(4px);
+  }
+  .hero h1{font-size:clamp(2.4rem,6vw,4.2rem);margin:1.3rem 0 .6rem;letter-spacing:-.01em}
+  .hero p{max-width:620px;margin:0 auto;color:rgba(255,255,255,.82);font-size:1.05rem}
+  .hero .count-pill{
+    position:relative;z-index:2;margin-top:2rem;display:inline-block;
+    background:var(--coral);color:#fff;font-weight:600;font-size:.95rem;
+    padding:.6rem 1.3rem;border-radius:100px;box-shadow:0 12px 30px -10px rgba(255,122,89,.7);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+  main{margin-top:-3rem;position:relative;z-index:3;padding-bottom:5rem}
+
+  /* ---------- ACCOMMODATION CARD ---------- */
+  .acc{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    margin-bottom:3rem;
+  }
+  .acc__head{
+    display:grid;grid-template-columns:1.4fr .9fr;gap:1.5rem;
+    padding:1.8rem 1.8rem 1.5rem;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  @media(max-width:760px){.acc__head{grid-template-columns:1fr}}
+  .acc__idx{
+    font-family:'Fraunces',serif;font-size:.8rem;font-weight:600;color:var(--ocean-500);
+    text-transform:uppercase;letter-spacing:.18em;
+  }
+  .acc__name{font-size:clamp(1.6rem,3.5vw,2.2rem);margin:.25rem 0 .35rem}
+  .acc__room{color:var(--muted);font-weight:500;font-size:1rem}
+  .acc__loc{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.9rem;margin-top:.6rem}
+  .acc__loc svg{flex:none}
+
+  .price-box{
+    background:linear-gradient(155deg,var(--sand),#fff);
+    border:1px solid var(--sand-deep);
+    border-radius:16px;padding:1.1rem 1.3rem;text-align:right;
+  }
+  @media(max-width:760px){.price-box{text-align:left}}
+  .price-box .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+  .price-box .amount{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--ocean-900);line-height:1.1;margin:.15rem 0}
+  .price-box .breakdown{font-size:.85rem;color:var(--muted)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;
+    background:var(--ocean-700);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;
+    padding:.65rem 1.1rem;border-radius:100px;transition:transform .15s ease,background .15s ease;
+  }
+  .btn:hover{background:var(--ocean-900);transform:translateY(-1px)}
+
+  .acc__body{padding:1.8rem}
+  .desc{color:#34474c;font-size:1.02rem;max-width:70ch}
+
+  /* ---------- SPEC CHIPS ---------- */
+  .specs{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0 .4rem}
+  .chip{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:#f1f6f5;border:1px solid var(--line);border-radius:12px;
+    padding:.55rem .85rem;font-size:.88rem;font-weight:500;color:#274046;
+  }
+  .chip svg{flex:none;color:var(--ocean-500)}
+
+  .feat-title{font-size:1.05rem;margin:1.8rem 0 .8rem;display:flex;align-items:center;gap:.6rem}
+  .feat-title::before{content:"";width:28px;height:2px;background:var(--coral);border-radius:2px}
+  .feats{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem 1.5rem}
+  @media(max-width:600px){.feats{grid-template-columns:1fr}}
+  .feats li{position:relative;padding-left:1.6rem;color:#34474c;font-size:.95rem}
+  .feats li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--ocean-300);box-shadow:0 0 0 4px rgba(67,194,207,.18)}
+
+  /* ---------- GALLERY ---------- */
+  .gal-title{font-size:1.05rem;margin:2rem 0 .9rem;display:flex;align-items:center;gap:.6rem}
+  .gal-title::before{content:"";width:28px;height:2px;background:var(--coral);border-radius:2px}
+  .carousel{position:relative}
+  .track{
+    display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,1fr);
+    grid-auto-columns:calc((100% - 1.2rem) / 3);gap:.6rem;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x proximity;scroll-behavior:smooth;
+    padding:.2rem .2rem .6rem;margin:0 -.2rem;
+    scrollbar-width:thin;scrollbar-color:var(--ocean-300) transparent;
+  }
+  .track::-webkit-scrollbar{height:8px}
+  .track::-webkit-scrollbar-thumb{background:var(--ocean-300);border-radius:8px}
+  .track::-webkit-scrollbar-track{background:transparent}
+  @media(max-width:600px){.track{grid-auto-columns:calc((100% - .6rem) / 2)}}
+  .track img{
+    width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;cursor:zoom-in;
+    background:#e9eef0;scroll-snap-align:start;display:block;
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .track img:hover{transform:scale(1.02);box-shadow:0 12px 24px -14px rgba(6,52,63,.5)}
+  .cbtn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(255,255,255,.95);color:var(--ocean-700);font-size:1.4rem;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px -6px rgba(6,52,63,.4);transition:background .15s,transform .15s,opacity .15s;
+  }
+  .cbtn:hover{background:#fff;color:var(--ocean-900)}
+  .cbtn:active{transform:translateY(-50%) scale(.92)}
+  .cbtn[hidden]{display:none}
+  .cbtn.prev{left:-6px}
+  .cbtn.next{right:-6px}
+  @media(max-width:600px){.cbtn{width:36px;height:36px;font-size:1.2rem}}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lb{position:fixed;inset:0;background:rgba(6,30,36,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:1.5rem}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 30px 80px -20px #000}
+  .lb__btn{position:absolute;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .lb__btn:hover{background:rgba(255,255,255,.25)}
+  .lb__close{top:1.2rem;right:1.2rem}
+  .lb__prev{left:1.2rem;top:50%;transform:translateY(-50%)}
+  .lb__next{right:1.2rem;top:50%;transform:translateY(-50%)}
+  .lb__count{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.9rem;background:rgba(0,0,0,.4);padding:.3rem .9rem;border-radius:100px}
+  @media(max-width:600px){.lb__prev{left:.4rem}.lb__next{right:.4rem}.lb__btn{width:44px;height:44px}}
+
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:2.5rem 1rem 3rem}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="eyebrow">☀️ Nyaralás 2026</span>
+  <h1>Nyaralás opciók</h1>
+  <p>Válogatott szállások egy helyen összehasonlítva — leírás, árak, felszereltség és galéria. Új opciók folyamatosan érkeznek.</p>
+  <div class="count-pill" id="countPill">1 szállás</div>
+</header>
+
+<main class="wrap" id="list"></main>
+
+<footer>
+  Az árak és adatok tájékoztató jellegűek. A képek a szállás hivatalos oldaláról származnak.<br>
+  Készült összehasonlítás céljából · 2026
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <button class="lb__btn lb__close" id="lbClose" aria-label="Bezárás">✕</button>
+  <button class="lb__btn lb__prev" id="lbPrev" aria-label="Előző">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb__btn lb__next" id="lbNext" aria-label="Következő">›</button>
+  <div class="lb__count" id="lbCount"></div>
+</div>
+
+<script>
+/* =====================================================================
+   SZÁLLÁS ADATOK — új opció hozzáadásához csak egy új objektumot
+   kell betenni ebbe a tömbbe.
+   ===================================================================== */
+const ICONS = {
+  size:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7V3h4M21 7V3h-4M3 17v4h4M21 17v4h-4"/></svg>',
+  bed:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4M2 10h20M2 10v8M22 10v8M6 10V8a1 1 0 0 1 1-1h3v3"/></svg>',
+  sea:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18c1.5 0 2-1 3.5-1s2 1 3.5 1 2-1 3.5-1 2 1 3.5 1 2-1 3.5-1M5 12a4 4 0 0 1 7-2M12 4a3 3 0 0 1 5 2"/></svg>',
+  coffee:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h13v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8zM17 9h2a2 2 0 0 1 0 5h-2M7 3v2M11 3v2"/></svg>',
+  guests:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg>',
+  pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  ext:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  map:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>'
+};
+
+const H = id => `https://cdn2.paraty.es/hovima-pinta/images/${id}=s1900`;
+const JC = id => `https://cdn2.paraty.es/hovima-jardin/images/${id}=s1900`;
+const FBM = id => `https://images.mirai.com/INFOROOMS/47020455/${id}/${id}_large.jpg`;
+const SR = f => `https://flamingosuite.com/wp-content/uploads/2022/03/${f}.jpg`;
+const BAR = n => `https://static-dm.barcelo.com/is/image/barcelo/${n}?wid=1600`;
+
+const ACCOMMODATIONS = [
+  {
+    name: "Hovima la Pinta (Excellence)",
+    room: "Két hálószobás Excellence apartman",
+    location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "664 000 Ft",
+    breakdown: "2 × 332 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=HOVIMA+La+Pinta+Beachfront+Family+Hotel+Costa+Adeje+Tenerife",
+    desc: "Fedezd fel az exkluzivitást és a kényelmet a kéthálószobás Excellence apartmanban. A tágas, modern lakás bútorozott teraszáról panorámás tengerre néző kilátás nyílik, az exkluzív Excellence élmény kíséretében. Tágas nappali étkezősarokkal és kanapéággyal, valamint teljesen felszerelt konyha — naponta utántöltött Lavazza® kapszulás kávégéppel. A két különálló hálószoba, a napi takarítás és a párnamenü, illetve a kicsiknek szóló extrák (köntös, papucs, medencetörölköző) teszik teljessé az élményt. Az Excellence vendégek egy privát, tengerparti étteremben reggelizhetnek à la carte kínálattal és helyi termékekből összeállított válogatott büfével.",
+    specs: [
+      { icon:"size",   text:"kb. 76 m² + 10–100 m² terasz" },
+      { icon:"bed",    text:"2 külön hálószoba + kanapéágy" },
+      { icon:"sea",    text:"Tengerre néző" },
+      { icon:"coffee", text:"Lavazza® kávégép" }
+    ],
+    features: [
+      "Nagy, bútorozott terasz panorámás tengerre néző kilátással (10–100 m²)",
+      "Napozóágyas terasz",
+      "Reggeli privát, tengerparti étteremben (à la carte + büfé)",
+      "Párnamenü a pihentető alváshoz",
+      "Napi takarítás",
+      "Üdvözlőcsomag · minibár",
+      "Mikrohullámú sütő",
+      "Széf (fizetős)",
+      "Excellence amenitások (köntös, papucs, medencetörölköző)",
+      "Gyermekfelszerelés kérhető (kiságy, kádbetét, etetőszék, cumisüveg-melegítő)"
+    ],
+    images: [
+      H("1e9a76317d8475f"),
+      H("7b52a4ff32ebaf3"),
+      H("93ded10ed227d12"),
+      H("b32093cb71fa38e"),
+      H("f2a3c1ec9807c6b"),
+      H("fdd2e3f6af7e238")
+    ]
+  },
+  {
+    name: "Hovima la Pinta (Superior)",
+    room: "Kéthálószobás Superior apartman · Web Exclusive",
+    location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "600 000 Ft",
+    breakdown: "2 × 300 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=HOVIMA+La+Pinta+Beachfront+Family+Hotel+Costa+Adeje+Tenerife",
+    desc: "Izgalmas pihenés a kéthálószobás Superior apartmanban: teljesen felszerelt konyha minden szükséges kisgéppel, tágas nappali étkezősarokkal és kényelmes kanapéággyal. A két különálló hálószoba privát szférát és nyugalmat biztosít, a bútorozott teraszról pedig csodálatos tengerre és medencére néző kilátás nyílik. Ugyanaz a remek La Pinta tengerparti fekvés, mint az Excellence apartmannál, az Excellence extraszolgáltatások nélkül – kedvezőbb áron.",
+    specs: [
+      { icon:"size",   text:"kb. 65 m² + 18 m² terasz" },
+      { icon:"bed",    text:"2 külön hálószoba + kanapéágy" },
+      { icon:"sea",    text:"Tengerre és medencére néző" },
+      { icon:"guests", text:"Bútorozott terasz" }
+    ],
+    features: [
+      "Két különálló hálószoba",
+      "Tágas, világos nappali étkezősarokkal",
+      "Kényelmes kanapéágy a nappaliban",
+      "Teljesen felszerelt konyha",
+      "Bútorozott terasz tengerre és medencére néző kilátással",
+      "TV nemzetközi csatornákkal",
+      "Mikrohullámú sütő",
+      "Széf (fizetős)"
+    ],
+    images: [
+      H("3982bd0c14829c7"),
+      H("4d55cb0e57291f8"),
+      H("75902c336c36b51"),
+      H("7e1294b0faede2f"),
+      H("b954d8fb85d6181"),
+      H("d37290b7fbaccb6")
+    ]
+  },
+  {
+    name: "Flamingo Beach Mate",
+    room: "Kéthálószobás apartman (75 m²)",
+    location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "460 000 Ft",
+    breakdown: "2 × 230 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=Flamingo+Beach+Mate+Costa+Adeje+Tenerife",
+    desc: "A Flamingo Beach Mate egy modern, családbarát aparthotel Costa Adeje egyik legjobb pontján. A kéthálószobás apartman tágas, kényelmes alternatíva: két különálló hálószoba, nappali, valamint teljesen felszerelt konyha. A lakáshoz terasz vagy erkély tartozik, és igény szerint tengerre néző egységek is elérhetők. A szálloda kínálatában medence, napozóterasz, wellness, étterem és edzőterem is megtalálható, így a pihenéshez és aktív kikapcsolódáshoz minden adott. (A szálloda több apartmantípust is kínál a stúdiótól a 3 hálószobás lakásig.)",
+    specs: [
+      { icon:"size",   text:"kb. 75 m²" },
+      { icon:"bed",    text:"2 külön hálószoba + kanapéágy" },
+      { icon:"guests", text:"Max. 5 fő" },
+      { icon:"sea",    text:"Tengerre néző (igény szerint)" }
+    ],
+    features: [
+      "2 különálló hálószoba",
+      "Tágas nappali",
+      "Teljesen felszerelt konyha",
+      "Terasz vagy erkély",
+      "Lapos képernyős TV nemzetközi csatornákkal",
+      "Medence és napozóterasz",
+      "Wellness / spa részleg",
+      "Étterem és bár",
+      "Edzőterem",
+      "Tengerparti, központi fekvés Costa Adeje-ben"
+    ],
+    images: [
+      FBM("9hrrvisPerkv6AivRPoM"),
+      FBM("FHbW94tatrZ6sIVp77aP"),
+      FBM("I4h6m9lFOgfm0LpulUDc"),
+      FBM("IETnAW6qgUJi3UPKyrRd"),
+      FBM("eHq0FnNpJnihX0s6SEqV"),
+      FBM("nzq40XUh86uOVNF46lvJ"),
+      FBM("qUAhx8sAUiQXA199Nc2r")
+    ]
+  },
+  {
+    name: "Flamingo Suites Boutique Hotel",
+    room: "Suite Real (kétszintes royal suite)",
+    location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "574 000 Ft",
+    breakdown: "2 × 287 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=Flamingo+Suites+Boutique+Hotel+Costa+Adeje+Tenerife",
+    desc: "A Flamingo Suites Boutique Hotel 4 csillagos butikszállás Costa Adeje egyik legjobb helyén. A Suite Real (Royal Suite) a pihenést és a privát szférát garantálja: kétszintes apartman, amelynek felső szintjén két tágas hálószoba található, mindkettőhöz külön fürdőszobával, az alsó szinten pedig önálló konyha és nagy nappali kapott helyet. Tökéletes választás egy nyugodt Costa Adeje-i nyaraláshoz. A teraszt privát jakuzzi és napozóágyak teszik teljessé.",
+    specs: [
+      { icon:"size",   text:"235 m², kétszintes" },
+      { icon:"bed",    text:"2 hálószoba, 2 fürdőszoba" },
+      { icon:"guests", text:"Max. 6 fő" },
+      { icon:"sea",    text:"Privát jakuzzi a teraszon" }
+    ],
+    features: [
+      "Kétszintes elrendezés",
+      "2 tágas hálószoba, mindkettőhöz külön fürdőszoba",
+      "Önálló, felszerelt konyha",
+      "Nagy nappali",
+      "Privát jakuzzi a teraszon",
+      "Nagy terasz napozóágyakkal",
+      "46\" LED TV",
+      "Ingyenes Wi-Fi",
+      "Minibár (felár ellenében)",
+      "Csendes, hátsó fekvésű lakrész"
+    ],
+    images: [
+      SR("DSC00608-HDR-scaled"),
+      SR("DSC00614-HDR"),
+      SR("DSC00626-HDR"),
+      SR("DSC00632-HDR-scaled"),
+      SR("DSC00638-HDR"),
+      SR("DSC00641-HDR-scaled"),
+      SR("DSC00647-HDR"),
+      SR("DSC00650-HDR-scaled"),
+      SR("DSC00656-HDR-scaled"),
+      SR("DSC00668-HDR"),
+      SR("DSC00692-HDR"),
+      SR("DSC00698-HDR-scaled"),
+      SR("DSC00719-HDR"),
+      SR("DSC00728-HDR-scaled"),
+      SR("DSC00740-HDR"),
+      SR("DSC00749-HDR"),
+      SR("DSC00755-HDR-1"),
+      SR("DSC00767-HDR-scaled")
+    ]
+  },
+  {
+    name: "Hovima Jardín Caleta",
+    room: "Kéthálószobás Superior apartman",
+    location: "La Caleta, Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "330 000 Ft",
+    breakdown: "2 × 160 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=HOVIMA+Jardin+Caleta+Costa+Adeje+Tenerife",
+    desc: "Kényelmes és világos apartmanok a nyugodt La Caleta negyedben, Costa Adeje-ben. A kéthálószobás Superior apartman tágas és világos: két különálló hálószoba a privát szféráért, kényelmes bútorzatú nappali, teljesen felszerelt konyha és komplett fürdőszoba. A bútorozott teraszról oldalirányú tengerre néző kilátás nyílik. Kedvező árú, jó alaplehetőség egy pihentető nyaraláshoz. (A szálloda 1 és 2 hálószobás apartmanokat is kínál.)",
+    specs: [
+      { icon:"size",   text:"kb. 60 m² + 6 m² terasz" },
+      { icon:"bed",    text:"2 háló (egyágyak) + kanapéágy" },
+      { icon:"guests", text:"Max. 5 fő" },
+      { icon:"sea",    text:"Oldalirányú tengerre néző" }
+    ],
+    features: [
+      "Két különálló hálószoba",
+      "Légkondicionálás a hálószobákban",
+      "Tágas, világos nappali",
+      "Teljesen felszerelt konyha",
+      "Komplett fürdőszoba",
+      "Bútorozott terasz oldalsó tengerre néző kilátással",
+      "Ingyenes Wi-Fi",
+      "Műholdas TV",
+      "Széf (fizetős)"
+    ],
+    images: [
+      JC("17b1131d1ebaaa2"),
+      JC("6742c3b7d0e28fb"),
+      JC("ac9be8f47eadb51"),
+      JC("d638ea43ef447bc"),
+      JC("e83ad5046420b4e")
+    ]
+  },
+  {
+    name: "Royal Hideaway Corales Suites (Barceló)",
+    room: "Deluxe Suite",
+    location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "660 000 Ft",
+    breakdown: "2 × 330 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=Royal+Hideaway+Corales+Suites+Costa+Adeje+Tenerife",
+    desc: "A Royal Hideaway Corales Suites a Barceló Hotel Group 5 csillagos luxusmárkája, tengerre néző kilátással és teljes privát szférával. A Deluxe Suite kiemelkedik tágas teraszával és luxusrészleteivel: nagy, felszerelt konyha és igazán kényelmes terek. Tágas nappali kanapéággyal, valamint külön hálószoba és fürdőszoba – tökéletes a kikapcsolódáshoz Costa Adeje páratlan környezetében.",
+    specs: [
+      { icon:"bed",    text:"King-size ágy (2×2 m) + kanapéágy" },
+      { icon:"sea",    text:"Tengerre néző, tágas terasz" },
+      { icon:"coffee", text:"Illy kávégép" },
+      { icon:"guests", text:"5★ luxus · Royal Hideaway" }
+    ],
+    features: [
+      "Külön hálószoba + nappali kanapéággyal",
+      "Teljesen felszerelt konyha",
+      "Tágas, bútorozott terasz napozóágyakkal",
+      "Tengerre néző kilátás",
+      "Fürdőkád, esőztető zuhany, köntös és papucs",
+      "Dizájnbútorok",
+      "Minibár",
+      "Illy kávégép",
+      "Mosó-/szárítógép",
+      "TV · széf · hajszárító"
+    ],
+    images: [
+      BAR("RHCS_ROOM_01"),
+      BAR("RHCS_ROOM_02"),
+      BAR("RHCS_ROOM_03"),
+      BAR("RHCS_ROOM_04"),
+      BAR("RHCS_ROOM_05"),
+      BAR("RHCS_ROOM_003-1"),
+      BAR("Deluxe-Suite3-1"),
+      BAR("Deluxe-Suitetechnology3-1")
+    ]
+  }
+  ,
+  {
+    name: "La Caleta Penthouse Costa Adeje",
+    room: "Deluxe apartman",
+    location: "La Caleta, Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "718 000 Ft",
+    breakdown: "2 × 359 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=La+Caleta+Penthouse+Costa+Adeje+Tenerife",
+    desc: "Az apartman különlegessége a panorámás tetőmedence és a pezsgőfürdő. A légkondicionált, saját bejáratú apartman 1 nappalival, 2 különálló hálószobával és 2 fürdőszobával (zuhanykabinnal és hajszárítóval) rendelkezik. A konyha főzésre és ételtárolásra is használható. A tágas apartmanhoz síkképernyős, műholdas csatornás tévé, mosógép, ülősarok és ruhásszekrény, valamint tengerre néző kilátás tartozik. Az egységben 2 ágy található.",
+    specs: [
+      { icon:"size",   text:"133 m² · önálló apartman" },
+      { icon:"bed",    text:"2 hálószoba · 2 ágy + kanapéágy" },
+      { icon:"sea",    text:"Tengerre néző · tetőmedence" },
+      { icon:"guests", text:"Saját bejárat · légkondi" }
+    ],
+    features: [
+      "Panorámás tetőmedence",
+      "Pezsgőfürdő (jacuzzi)",
+      "Saját, teljesen felszerelt konyha",
+      "2 fürdőszoba zuhanykabinnal / fürdőkáddal",
+      "Erkély és terasz",
+      "Tengerre, hegyre, városra és nevezetességre néző kilátás",
+      "Légkondicionálás és fűtés",
+      "Síkképernyős tévé műholdas csatornákkal",
+      "Mosógép és ruhaszárító állvány",
+      "Ülősarok, ruhásszekrény, ruhatartó állvány",
+      "Saját bejárat",
+      "Széf",
+      "Vasaló és vasalási lehetőség",
+      "Hajszárító",
+      "Törölközők és ágynemű",
+      "Ingyenes wifi",
+      "Rádió · ventilátor",
+      "Vécépapír · kézfertőtlenítő"
+    ],
+    images: [
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515574.jpg?k=acd794372ef973b3af1d2d38c55986fd1b8eb6abeb0c298788288f8d3b917b5b&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521980.jpg?k=dad495b96be0e7281b5297202ff2c977c66fa76728459f1268847345715f34bd&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521761.jpg?k=c265be48240bc2be20e1b926895db3cbc409066349fae0ac46bd4b3019596270&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521956.jpg?k=ef37647c152f447d26163dcdc36e0a2f4e5b0c3d12e661f938488b4c04fdbe0a&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073590.jpg?k=152d4794cf936bc658847760c311c82bd8a43c91a2920708f6c059ed1410ea27&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515693.jpg?k=71d592f8171cda3dd2e9c94789d8f80c172f4cf2d9284e91ab96ffc72f439625&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188072305.jpg?k=4f848b8d852132a958b5a6b65220df5c9e7e99454b7e84ca01899eebeb2bbf65&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521723.jpg?k=081a3f4017e4421d62511e157ca2d0ddccc5802dbd42b84524dcd8a4d7c9e058&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188072292.jpg?k=345211f7e409be7244922a955dfd2dd74363433c42353854fdb1fe4d19606982&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515671.jpg?k=c9124a50e29d1d4f99d08ebe3c6878e795cc35a6047313df7d37729610522d9d&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632376.jpg?k=59943ac1289eff7c718190bbbe325fbdd62d3121339a08f47849abf4232f727d&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515670.jpg?k=e49c565aab16bc6eb78d930dcf4f65a5a73f8c488462e1d8a5b5625c842dcc4c&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515628.jpg?k=d1b1af512360c01da14c285731142a2cf43f22cae3c9513cbd4fdef2d5080ede&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515665.jpg?k=630c13129c68efb24b44ea5c36775b15c023c78f7b9f4f504ddadb0e7134de31&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632130.jpg?k=bc47e6c7c5dc5a22fa7bffa830938d4f251b7987a2a3e2238d42826b8adb81bb&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515616.jpg?k=3938246a6039514dc38eb95fa2af9e10cf6b14f1416572050e6c8f71245b2cc9&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515612.jpg?k=c31f186f914f07ed65e6435d43b86cf00176957dfc326986d5d56129e6d90707&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/219254088.jpg?k=f08839a7b14f459af0a99ef5d6325705128ac03446deb47c475da71f79cff76e&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515589.jpg?k=43d4398b1305213822062354ebe1c720e5809325ae689e3e4532bc2c7c3e2a38&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265631974.jpg?k=3ee199600d22939dc2d01e870b63c70b6f52e837c8685b6fddc78a0b6fc18bea&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265631946.jpg?k=f50a15b6aeb7cb8087559683e1a0e7bee64a285797d29e74a9612dd34286473f&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632115.jpg?k=124d02810f791b20608386654ee6da4fe7a70188d4aacbf7f8c6234277abb55b&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632118.jpg?k=06b583a9781ecc6065121f5ce9b37b11546aa0f577a16ee98da5d0508a067c2d&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515619.jpg?k=373429f68dbc98cce4594bc2dac426fb7b6b8078aad86ea65a207cc5f42a8716&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515692.jpg?k=25c46b140a4fa621f80ce1fafa7f7da73896cdc3def69d0219222bbbe2417134&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515672.jpg?k=78261213b067f6b0f86d3e62cf87e642c51f0e277a867272e50cabc84554abaa&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515623.jpg?k=b86f7eb680e914026e4cc5866d979c77dc32091238cf7a5d8b231cde23763cae&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515625.jpg?k=9d776c79d26bb8fabfd75aa4f9359679d6f7149244fba8b810ef7c7efa972f36&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515662.jpg?k=15bbee08549abf6c4053f6cd6da6884b325fb5b2c3b23e9bf30a0fbcd7b82be8&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632159.jpg?k=8c7bef0e3ff4183fee1584eaaf1ba0ac3d2c12db95aee312b8f6f830d9bb332c&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515658.jpg?k=f8b0762e63edb8b75134eafc97064ee69a26cf35d3a32937e676a3a7e800164a&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265632153.jpg?k=151490b8d7dc1225783c743317a6f61bd8a3c61314bf76386e93aa45a83fdc16&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521701.jpg?k=5ba7c4c70dd93eed7cac918660d105a993ae1ee29bae6260494ef80d1c4a85ad&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521705.jpg?k=ba255143f9d80692e02d71514fb5aa09f1908ef7880724021756106d5bf7850e&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073384.jpg?k=8120ca363d624d474e9ef911b3f925dd682073da2a2987bccce090868287a7bf&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073373.jpg?k=4047d98e704c51dc0ed083c4c4a4023b3e068ed453aac5cbca99605ef21adcf5&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073614.jpg?k=d7ee83325d12c42b21f48d88ec1e921e8d8840b626bb3fdd561523b92ecefdc2&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073624.jpg?k=220126c7d2699a21577c429f923450b2d5f0feaeb9f3653843985a45fda74f7b&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220520705.jpg?k=b01d2c70b08edbc5156cc072652995621276434a02ad987172f72044d52c1dd7&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521939.jpg?k=9f979e0c7922bdbe7f3531ef18cdb37b9d19847ab231abe556a31d4bb681e1f7&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073694.jpg?k=343084e37f07ff21c9f4b00a2d019886617f2e5c76f5f0b71242b4ec57aaf0ac&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521946.jpg?k=1a904b9bde9e78beb851494b70f3e1baff3a4d12e711ce4a226ccc09d0fa35de&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521942.jpg?k=f168a2c2272b5b44a937270eb2b4303115444f910f5749053cb16d4727b6d376&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521949.jpg?k=6de6ac9e038ab57c4946b8b4a1b7dd80dd4e685bfa0b45fe48c3bfd24b0a1fc7&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220520699.jpg?k=4125ca41db1f72e5d4d3807cfe0994540d645b402b84b758268ed784a7a248d3&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521961.jpg?k=fc45d860268d78cd6b0c828ad85286dda7e66c2a503e3d005dcb08a20ae62eb9&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521965.jpg?k=1182685d6c329d3cd4ecabd3d45132fc95e458f77db7db78d13a3477b0961494&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521970.jpg?k=915939b6bc769564ecc67b061342e5c8da94a0c6c7fa771baa46f1bfc8614fca&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/220521767.jpg?k=c890c6efed6d8e2a65768c84444f70f2854e6d33d61ba7d5f8456e1d2caea8ef&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073687.jpg?k=160e8fde111aefafe89f2356b1c648d302937f467e8ee0e4f70f256f1c6f4ca0&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/188073704.jpg?k=aa165bfb41737e75d832f76057350402baf3dd7e725dff652218b2aa07c6760e&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515695.jpg?k=746f3986a805bd1fcfe64bf9f536d5f16d1b9d29791b749e3bb71eb2a815590f&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515608.jpg?k=812c5d40023083874b3bca053a8f3e04f640d5f69b2d0ba846ffc404d82b6d80&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515602.jpg?k=6a2ab3495092025614638cc937bd92c4e008ec896b311dedcd82c098c23a7772&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515593.jpg?k=732a05985ff2ac96900c3cf9c176c507cec0202d2953b0ebc1a244d6fe67765c&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515584.jpg?k=8e433fac6883bb7b369fecf5501e8bcc44c69321bbb649de0ba2ec61246245b9&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/265515580.jpg?k=e81a80e25a110f507b08655fcb2d0adebad1c540cc41276029788146d0ea2f16&o="
+    ]
+  }
+  ,
+  {
+    name: "Home2Book Paradise Playa Las Vistas",
+    room: "Deluxe apartman · terasz, tengerre néző",
+    location: "Los Cristianos, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "300 000 Ft",
+    breakdown: "2 × 150 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=Playa+Las+Vistas+Los+Cristianos+Tenerife",
+    desc: "Kellemes, kétszobás lakás tengerre néző kilátással Los Cristianosban, néhány lépésre a Las Vistas strandtól és a sétánytól. Tágas, teljesen felszerelt, nagy terasszal, amely a teljes nappalit körülöleli – akár távmunkához is ideális. Családok és párok számára egyaránt tökéletes: 5 fő befogadására alkalmas, két hálószobával, 1 fürdőszobával, teljesen felszerelt konyhával, nappalival és egy nagy terasszal, ahonnan a naplementében és a tengerre néző kilátásban gyönyörködhetsz. Netflixes tévé és optikai (üvegszálas) wifi is tartozik hozzá.",
+    specs: [
+      { icon:"guests", text:"Max. 5 fő · 2 hálószoba" },
+      { icon:"bed",    text:"1 fürdőszoba · Queen ágy" },
+      { icon:"sea",    text:"Tengerre néző · nagy terasz" },
+      { icon:"coffee", text:"Teljesen felszerelt konyha" }
+    ],
+    features: [
+      "2 hálószoba, 1 fürdőszoba",
+      "Nagy terasz tengerre néző kilátással, naplementével",
+      "Teljesen felszerelt konyha (hűtő, sütő, mosogatógép, mikró, főzőlap)",
+      "Tágas nappali ülősarokkal",
+      "Légkondicionálás",
+      "Síkképernyős tévé Netflixszel",
+      "Optikai (üvegszálas) wifi",
+      "Mosási lehetőség és porszívó",
+      "Hajszárító",
+      "Ágynemű és törölköző",
+      "Lift az épületben",
+      "Csecsemők számára is alkalmas",
+      "Las Vistas strand néhány lépésre, éttermekkel körülvéve"
+    ],
+    images: [
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914539107939228.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914539278696644.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914539596725048.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914539638354027.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914539809447000.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540018297170.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540177194342.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540364783536.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540537639564.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540743703428.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914540984618172.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914541241134308.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914541526532579.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914541723579333.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914541980299206.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914542516159477.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914542865175331.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914544496907027.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914549522127581.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914549582121384.jpg",
+      "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914549640850334.jpg"
+    ]
+  }
+  ,
+  {
+    name: "Parque Santiago II",
+    room: "Kéthálószobás apartman · privát medence",
+    location: "Playa de las Américas, Tenerife · Kanári-szigetek, Spanyolország",
+    price: "462 000 Ft",
+    breakdown: "2 × 231 000 Ft",
+    map: "https://www.google.com/maps/search/?api=1&query=Parque+Santiago+II+Avenida+Rafael+Puig+Lluvina+32+Playa+de+las+Americas+Tenerife",
+    desc: "Ehhez a tágas apartmanhoz privát medence tartozik. A lakás 1 nappalival, 2 különálló hálószobával és 3 fürdőszobával (zuhanyzóval és hajszárítóval) rendelkezik. A jól felszerelt konyhában főzőlap, hűtőszekrény, mosogatógép és konyhai eszközök várják a vendégeket. A légkondicionált apartmanhoz síkképernyős tévé, mosógép, tea- és kávéfőző, ülősarok, valamint tengerre néző kilátás tartozik. Az egységben 4 ágy található. Cím: Avenida Rafael Puig Lluvina 32, Parque Santiago II, Playa de las Américas.",
+    specs: [
+      { icon:"size",   text:"70 m² · önálló apartman" },
+      { icon:"bed",    text:"2 háló (4 ágy) + kanapéágy" },
+      { icon:"sea",    text:"Tengerre néző · privát medence" },
+      { icon:"guests", text:"3 fürdőszoba · 4 felnőtt" }
+    ],
+    features: [
+      "Privát medence",
+      "Hálószoba 1: 1 franciaágy · Hálószoba 2: 2 franciaágy",
+      "Nappali kanapéággyal / kihajtható ággyal",
+      "3 fürdőszoba (zuhany/kád) + vendég-WC",
+      "Erkély kültéri bútorokkal",
+      "Teljesen felszerelt konyha (főzőlap, sütő, hűtő, mosogatógép, mikró, vízforraló, kenyérpirító)",
+      "Tea- és kávéfőző, konyhai eszközök",
+      "Étkezősarok étkezőasztallal",
+      "Légkondicionálás",
+      "Síkképernyős tévé",
+      "Ingyenes wifi",
+      "Mosógép és szárítógép",
+      "Vasaló és vasalási lehetőség",
+      "Íróasztal, ülősarok, ruhásszekrény, ruhatartó állvány",
+      "Széf",
+      "Szúnyogháló",
+      "Hajszárító, törölköző, ágynemű, vécépapír",
+      "Lift a felső szintekhez (egyes szintek csak lépcsőn)"
+    ],
+    images: [
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503223349.jpg?k=99071e73332e2d071f5e221421b4e6e1764b5e831031077492cea53cbead28a6&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503357668.jpg?k=42fa719aa708bc318fede9e767012a1e75e61efdc4b61351f49ca9432f42a2a8&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503359176.jpg?k=27480fc2b15aef45fc2ee71ddc8c6f9737e26992e1afe3649688c91a5db2c88f&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503358307.jpg?k=92f6033cbf2cc2cf8786d3955d8c8ef8ff6e685815fa39eaff7a42e120e54257&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715303.jpg?k=dc888c6b99e076a85cc72b4a85ffdc976a3b3795eec6064bc5d880f8212e1e92&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511488489.jpg?k=e0788e40f12927fdb2b097651c495416c1534c53f07f6541622bb479eba08e9d&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511488000.jpg?k=1dff461e0ba8be6858c5e9056cb4024b3c3d30fdd7165562923118160a1f59ed&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511487931.jpg?k=6436f2af5d78dd6e4b9abf71cc59500b4b2719af94176bf8c680b9d18bce9aa0&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511487904.jpg?k=0ac86cfae08680cc6d38bfed7b0bde9a4cee5801ce1e06fab0a59fe9f7e0c043&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/323333298.jpg?k=98c7c86640c53043c82c86fe4d5acc0bc5efaa30f056d0efb66f7075f6d7b0f8&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715030.jpg?k=9fa3525653c0207a884183b850ac07718e46cda3e071b55ac957233d52f57cb2&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504716466.jpg?k=68e58c9e5f236e55e208843b0ccbcab062e793e31a55bd5e7f7edf019a51bd30&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504716595.jpg?k=980177afa77c8eec524dd315557e00ce1047c8177171d41cf4a74607f0eceaf5&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715145.jpg?k=2cda03bcee331687c73fdbe8973799dfa98d48ba8d611020a7358186a6a6d9a7&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008544.jpg?k=89438b8da7b8b62b552251de5de3aeca6b5b2ef7d9d07832cc0fa5f7554fe905&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008539.jpg?k=aa69a075aef92e30140a4fca8c0d5a7295b65a17d04feda68a9e6ccd86c5af7c&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504666525.jpg?k=cfba33c069d4fbc9a73b754b4899235eba69396c5cf00894c296f19edeb10071&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503357894.jpg?k=0ad9108ad5d729a339029a9bfa58310ee9aeedc3b2f9f0260484f90512454f64&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008545.jpg?k=255da9b602ebff07bd36501fd3384a8eecb3f4278552bbf5b8bf195cf51fc231&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/323333219.jpg?k=b730e5c1ec279b3e00f514c53b3cba98978db06345a888c946de69115fbee886&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504714919.jpg?k=06bc6b54d4bfbe9bf09a746ae5d2b6cbf0a801c32614a773de81855c1e944539&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504714764.jpg?k=763dbb1122f5294521ccbf6dc9634acc1fe50081e144777ad0beba5d3f64c89e&o="
+    ]
+  }
+];
+
+/* ===================== RENDER ===================== */
+const list = document.getElementById('list');
+
+ACCOMMODATIONS.forEach((a, ai) => {
+  const specsHTML = a.specs.map(s =>
+    `<span class="chip">${ICONS[s.icon]||''}${s.text}</span>`).join('');
+  const featsHTML = a.features.map(f => `<li>${f}</li>`).join('');
+  const galHTML = a.images.map((url, i) =>
+    `<img loading="lazy" src="${url}" alt="${a.name} – ${a.room} kép ${i+1}" data-acc="${ai}" data-i="${i}">`
+  ).join('');
+
+  list.insertAdjacentHTML('beforeend', `
+    <section class="acc">
+      <div class="acc__head">
+        <div>
+          <div class="acc__idx">Opció ${String(ai+1).padStart(2,'0')}</div>
+          <h2 class="acc__name">${a.name}</h2>
+          <div class="acc__room">${a.room}</div>
+          <div class="acc__loc">${ICONS.pin}${a.location}</div>
+        </div>
+        <div class="price-box">
+          <div class="label">Ár</div>
+          <div class="amount">${a.price}</div>
+          <div class="breakdown">${a.breakdown}</div>
+          <a class="btn" href="${a.map}" target="_blank" rel="noopener">Térkép megnyitása ${ICONS.map}</a>
+        </div>
+      </div>
+      <div class="acc__body">
+        <p class="desc">${a.desc}</p>
+        <div class="specs">${specsHTML}</div>
+        <h3 class="feat-title">Felszereltség &amp; szolgáltatások</h3>
+        <ul class="feats">${featsHTML}</ul>
+        <h3 class="gal-title">Galéria · ${a.images.length} kép</h3>
+        <div class="carousel">
+          <button class="cbtn prev" type="button" aria-label="Vissza" data-dir="-1">‹</button>
+          <div class="track">${galHTML}</div>
+          <button class="cbtn next" type="button" aria-label="Tovább" data-dir="1">›</button>
+        </div>
+      </div>
+    </section>
+  `);
+});
+
+document.getElementById('countPill').textContent =
+  ACCOMMODATIONS.length + (ACCOMMODATIONS.length === 1 ? ' szállás' : ' szállás');
+
+/* ===================== LIGHTBOX ===================== */
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCount = document.getElementById('lbCount');
+let curAcc = 0, curI = 0;
+
+function openLB(ai, i){
+  curAcc = ai; curI = i; showLB();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function showLB(){
+  const imgs = ACCOMMODATIONS[curAcc].images;
+  lbImg.src = imgs[curI];
+  lbCount.textContent = `${curI+1} / ${imgs.length}`;
+}
+function move(d){
+  const len = ACCOMMODATIONS[curAcc].images.length;
+  curI = (curI + d + len) % len; showLB();
+}
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+document.querySelector('#list').addEventListener('click', e => {
+  const img = e.target.closest('.track img');
+  if(img){ openLB(+img.dataset.acc, +img.dataset.i); return; }
+  const btn = e.target.closest('.cbtn');
+  if(btn){
+    const track = btn.parentElement.querySelector('.track');
+    track.scrollBy({ left: (+btn.dataset.dir) * track.clientWidth * 0.85, behavior:'smooth' });
+  }
+});
+
+/* Carousel: nyilak elrejtése, ha nincs mit görgetni / a szélen vagyunk */
+function syncCarousels(){
+  document.querySelectorAll('.carousel').forEach(c => {
+    const track = c.querySelector('.track');
+    const prev = c.querySelector('.cbtn.prev');
+    const next = c.querySelector('.cbtn.next');
+    const max = track.scrollWidth - track.clientWidth - 2;
+    const overflow = max > 4;
+    prev.hidden = !overflow || track.scrollLeft <= 2;
+    next.hidden = !overflow || track.scrollLeft >= max;
+  });
+}
+document.querySelectorAll('.track').forEach(t => t.addEventListener('scroll', syncCarousels, {passive:true}));
+window.addEventListener('resize', syncCarousels);
+window.addEventListener('load', syncCarousels);
+syncCarousels();
+document.getElementById('lbClose').onclick = closeLB;
+document.getElementById('lbNext').onclick = () => move(1);
+document.getElementById('lbPrev').onclick = () => move(-1);
+lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
+document.addEventListener('keydown', e => {
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLB();
+  if(e.key === 'ArrowRight') move(1);
+  if(e.key === 'ArrowLeft') move(-1);
+});
+</script>
+</body>
+</html>
