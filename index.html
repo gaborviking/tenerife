@@ -306,9 +306,11 @@
   .flight__opt{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--ocean-700);padding:.26rem .7rem;border-radius:100px;margin-bottom:.45rem}
   .flight__opt--b{background:#a21caf}
   @media(min-width:980px){
-    /* szűk 2-oszlopos kártyán a cím és az ár tisztán egymás alatt, nem törik szét */
-    .flights__grid .flight__top{flex-direction:column;align-items:stretch;gap:.7rem}
-    .flights__grid .flight__total{text-align:left}
+    /* szűk 2-oszlopos kártyán a cím és az ár egy sorban marad (nem törik alá) */
+    .flights__grid .flight__top{flex-wrap:nowrap;gap:.8rem}
+    .flights__grid .flight__top>div:first-child{min-width:0}
+    .flights__grid .flight__total{flex:none}
+    .flights__grid .flight__total-amount{font-size:1.3rem}
     .flights__grid .flight__grid{grid-template-columns:1fr}
     .flights__grid .flight__table{font-size:.74rem}
     .flights__grid .flight__table th,.flights__grid .flight__table td{padding:.4rem .45rem}
@@ -444,7 +446,7 @@
 
 <footer>
   Az árak és adatok tájékoztató jellegűek. A képek a szállás hivatalos oldaláról származnak.<br>
-  Készült összehasonlítás céljából · 2026 · <strong>build 2026.06.07-5</strong>
+  Készült összehasonlítás céljából · 2026 · <strong>build 2026.06.07-6</strong>
 </footer>
 
 <!-- Lightbox -->
