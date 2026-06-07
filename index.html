@@ -272,6 +272,10 @@
   .flight__total-per{display:block;font-size:.72rem;color:var(--muted)}
   .flight__grid{display:grid;grid-template-columns:1.7fr 1fr;gap:1.3rem;align-items:start}
   @media(max-width:760px){.flight__grid{grid-template-columns:1fr}}
+  .flight__tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;scrollbar-width:thin;scrollbar-color:var(--ocean-300) transparent}
+  .flight__tablewrap::-webkit-scrollbar{height:7px}
+  .flight__tablewrap::-webkit-scrollbar-thumb{background:var(--ocean-300);border-radius:8px}
+  .flight__tablewrap::-webkit-scrollbar-track{background:transparent}
   .flight__table{width:100%;border-collapse:collapse;font-size:.8rem}
   .flight__table th{text-align:left;font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ocean-700);background:#f1f6f5;padding:.45rem .55rem;border-bottom:1px solid var(--line)}
   .flight__table td{padding:.5rem .55rem;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -356,6 +360,7 @@
           </div>
         </div>
         <div class="flight__grid">
+          <div class="flight__tablewrap">
           <table class="flight__table">
             <thead>
               <tr><th>Irány</th><th>Dátum</th><th>Indulás</th><th>Érkezés</th><th>Idő</th><th>Légitársaság</th></tr>
@@ -365,6 +370,7 @@
               <tr><td>Vissza · TFS→BUD</td><td>szept. 5.</td><td>16:30</td><td>22:35</td><td>5ó 5p</td><td>Ryanair</td></tr>
             </tbody>
           </table>
+          </div>
           <div class="flight__side">
             <div class="flight__price">
               <div><span>Kedvezmény előtti ár</span><span>508 630 Ft</span></div>
@@ -396,6 +402,7 @@
           </div>
         </div>
         <div class="flight__grid">
+          <div class="flight__tablewrap">
           <table class="flight__table">
             <thead>
               <tr><th>Irány</th><th>Dátum</th><th>Indulás</th><th>Érkezés</th><th>Idő</th><th>Légitársaság</th></tr>
@@ -405,6 +412,7 @@
               <tr><td>Vissza · TFS→BUD</td><td>szept. 6. (V) → 7. (H)</td><td>19:20</td><td>01:25</td><td>5ó 5p</td><td>Wizz Air · W62494</td></tr>
             </tbody>
           </table>
+          </div>
           <div class="flight__side">
             <div class="flight__price">
               <div class="tot"><span>Teljes költség</span><span>507 514 Ft</span></div>
@@ -433,7 +441,7 @@
 
 <footer>
   Az árak és adatok tájékoztató jellegűek. A képek a szállás hivatalos oldaláról származnak.<br>
-  Készült összehasonlítás céljából · 2026 · <strong>build 2026.06.07-2</strong>
+  Készült összehasonlítás céljából · 2026 · <strong>build 2026.06.07-3</strong>
 </footer>
 
 <!-- Lightbox -->
