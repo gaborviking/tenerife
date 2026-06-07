@@ -103,6 +103,15 @@
   .price-box .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
   .price-box .amount{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--ocean-900);line-height:1.1;margin:.15rem 0}
   .price-box .breakdown{font-size:.85rem;color:var(--muted)}
+  .price-sub{margin-top:.65rem;padding-top:.55rem;border-top:1px dashed var(--sand-deep)}
+  .price-sub__label{display:block;font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+  .price-sub__amt{display:block;font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;color:var(--ocean-700);line-height:1.15;margin:.05rem 0}
+  .ct-2x{display:block;font-size:.74rem;color:var(--muted);margin-top:.25rem}
+  .ct-pr{display:flex;align-items:baseline;gap:.45rem;white-space:nowrap}
+  .ct-pr strong{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ocean-900)}
+  .ct-pr--sub{margin-top:.2rem;color:var(--muted)}
+  .ct-pr--sub strong{font-size:.95rem;font-weight:600;color:var(--ocean-700)}
+  .ct-pl{display:inline-block;min-width:2.4em;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
   .btn{
     display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;
     background:var(--ocean-700);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;
@@ -215,6 +224,86 @@
   .note ul{margin:0;padding-left:1.1rem}
   .note li{margin:.22rem 0;color:#7c4a1e;font-size:.93rem}
 
+  /* ---------- TAGEK · KIEMELÉS · CSOPORTOK ---------- */
+  .tag{
+    display:inline-block;font-size:.74rem;font-weight:700;
+    padding:.32rem .8rem;border-radius:100px;border:1px solid transparent;white-space:nowrap;
+  }
+  .tag--half{background:#dcfce7;color:#15803d;border-color:#86efac}
+  .tag--breakfast{background:#fef9c3;color:#a16207;border-color:#fde047}
+  .tag--none{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+  .acc__tagrow{margin:.15rem 0 .55rem}
+
+  .acc--selected{border:2px solid var(--coral);box-shadow:0 22px 55px -22px rgba(255,122,89,.55)}
+  .acc__ribbon{
+    display:inline-flex;align-items:center;gap:.35rem;background:var(--coral);color:#fff;
+    font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    padding:.32rem .85rem;border-radius:100px;margin-bottom:.6rem;
+  }
+
+  .group-head{margin:.5rem 0 1.7rem}
+  .group-head h2{font-size:clamp(1.5rem,3.5vw,2rem);color:var(--ocean-900)}
+  .group-head p{color:var(--muted);margin-top:.2rem}
+  .group-head--muted{border-top:1px dashed var(--sand-deep);padding-top:2.2rem;margin-top:1rem}
+  .group-head--muted h2{color:var(--muted)}
+
+  .ct-tag{margin-top:.45rem}
+  .ctable tbody tr.ct-sel{background:#fff7ed}
+  .ctable tbody tr.ct-sel:hover{background:#fff2e3}
+
+  /* ---------- REPÜLŐJEGY BLOKK ---------- */
+  .flight{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:1.3rem 1.5rem;margin-bottom:1.6rem;font-size:.85rem;
+  }
+  .flight__top{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:.9rem;
+  }
+  .flight__eyebrow{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--ocean-500)}
+  .flight__route{font-size:1.35rem;margin:.15rem 0 .25rem}
+  .flight__meta{color:var(--muted);font-size:.82rem}
+  .flight__total{text-align:right;background:linear-gradient(155deg,var(--sand),#fff);border:1px solid var(--sand-deep);border-radius:14px;padding:.55rem .9rem}
+  .flight__total-label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+  .flight__total-amount{display:block;font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:var(--ocean-900);line-height:1.15}
+  .flight__total-per{display:block;font-size:.72rem;color:var(--muted)}
+  .flight__grid{display:grid;grid-template-columns:1.7fr 1fr;gap:1.3rem;align-items:start}
+  @media(max-width:760px){.flight__grid{grid-template-columns:1fr}}
+  .flight__table{width:100%;border-collapse:collapse;font-size:.8rem}
+  .flight__table th{text-align:left;font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ocean-700);background:#f1f6f5;padding:.45rem .55rem;border-bottom:1px solid var(--line)}
+  .flight__table td{padding:.5rem .55rem;border-bottom:1px solid var(--line);white-space:nowrap}
+  .flight__table tr:last-child td{border-bottom:none}
+  .flight__table td:first-child{font-weight:700;color:var(--ink)}
+  .flight__side{display:flex;flex-direction:column;gap:.75rem}
+  .flight__price{font-size:.82rem}
+  .flight__price>div{display:flex;justify-content:space-between;gap:1rem;padding:.18rem 0}
+  .flight__price .disc{color:#15803d}
+  .flight__price .tot{border-top:1px solid var(--line);margin-top:.15rem;padding-top:.45rem;font-weight:700;font-family:'Fraunces',serif;font-size:1rem;color:var(--ocean-900)}
+  .flight__extras{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0}
+  .flight__extras li{font-size:.72rem;font-weight:700;padding:.28rem .6rem;border-radius:100px;border:1px solid transparent}
+  .flight__extras .yes{background:#dcfce7;color:#15803d;border-color:#86efac}
+  .flight__extras .yes::before{content:"✓ "}
+  .flight__extras .no{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+  .flight__extras .no::before{content:"✕ "}
+  .flight__note{
+    margin-top:1rem;font-size:.73rem;line-height:1.5;color:#92400e;
+    background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:.5rem .85rem;
+  }
+  /* két repjegy-opció */
+  .flights{margin-bottom:1.6rem}
+  .flights__head{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
+  .flight__datebadge{font-size:.72rem;font-weight:700;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:100px;padding:.32rem .85rem}
+  .flights__grid{display:grid;gap:1.1rem}
+  @media(min-width:980px){.flights__grid{grid-template-columns:1fr 1fr}}
+  .flights__grid .flight{margin-bottom:0;height:100%}
+  .flight__opt{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--ocean-700);padding:.26rem .7rem;border-radius:100px;margin-bottom:.45rem}
+  .flight__opt--b{background:#a21caf}
+  @media(min-width:980px){
+    .flights__grid .flight__grid{grid-template-columns:1fr}
+    .flights__grid .flight__table{font-size:.74rem}
+    .flights__grid .flight__table th,.flights__grid .flight__table td{padding:.4rem .45rem}
+  }
+
   /* ---------- LIGHTBOX ---------- */
   .lb{position:fixed;inset:0;background:rgba(6,30,36,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:1.5rem}
   .lb.open{display:flex}
@@ -240,6 +329,95 @@
 </header>
 
 <main class="wrap">
+  <section class="flights">
+    <div class="flights__head">
+      <span class="flight__eyebrow">✈ Repülőjegy · 2 opció</span>
+      <span class="flight__datebadge">2026.06.07-i állapot</span>
+    </div>
+
+    <div class="flights__grid">
+
+      <!-- ===== A OPCIÓ ===== -->
+      <article class="flight">
+        <div class="flight__top">
+          <div>
+            <span class="flight__opt">A opció · 4 éjszaka</span>
+            <h3 class="flight__route">Budapest ⇄ Tenerife</h3>
+            <div class="flight__meta">2026. szept. 1. – 5. · 4 utas · Ryanair · közvetlen</div>
+          </div>
+          <div class="flight__total">
+            <span class="flight__total-label">Össz · 4 fő</span>
+            <span class="flight__total-amount">506 151 Ft</span>
+            <span class="flight__total-per">≈ 126 538 Ft / fő</span>
+          </div>
+        </div>
+        <div class="flight__grid">
+          <table class="flight__table">
+            <thead>
+              <tr><th>Irány</th><th>Dátum</th><th>Indulás</th><th>Érkezés</th><th>Idő</th><th>Légitársaság</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Oda · BUD→TFS</td><td>szept. 1. (K)</td><td>13:50</td><td>18:30</td><td>5ó 40p</td><td>Ryanair</td></tr>
+              <tr><td>Vissza · TFS→BUD</td><td>szept. 5.</td><td>16:30</td><td>22:35</td><td>5ó 5p</td><td>Ryanair</td></tr>
+            </tbody>
+          </table>
+          <div class="flight__side">
+            <div class="flight__price">
+              <div><span>Kedvezmény előtti ár</span><span>508 630 Ft</span></div>
+              <div class="disc"><span>Kedvezmény</span><span>−2 479 Ft</span></div>
+              <div class="tot"><span>Teljes költség</span><span>506 151 Ft</span></div>
+            </div>
+            <ul class="flight__extras">
+              <li class="yes">Elsőbbségi beszállás</li>
+              <li class="yes">10 kg-os kézipoggyász</li>
+              <li class="no">Feladott poggyász</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== B OPCIÓ ===== -->
+      <article class="flight">
+        <div class="flight__top">
+          <div>
+            <span class="flight__opt flight__opt--b">B opció · 5 éjszaka</span>
+            <h3 class="flight__route">Budapest ⇄ Tenerife</h3>
+            <div class="flight__meta">2026. szept. 1. – 7. · 4 utas · Ryanair + Wizz Air · közvetlen</div>
+          </div>
+          <div class="flight__total">
+            <span class="flight__total-label">Össz · 4 fő</span>
+            <span class="flight__total-amount">507 514 Ft</span>
+            <span class="flight__total-per">≈ 126 879 Ft / fő</span>
+          </div>
+        </div>
+        <div class="flight__grid">
+          <table class="flight__table">
+            <thead>
+              <tr><th>Irány</th><th>Dátum</th><th>Indulás</th><th>Érkezés</th><th>Idő</th><th>Légitársaság</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Oda · BUD→TFS</td><td>szept. 1. (K)</td><td>13:50</td><td>18:30</td><td>5ó 40p</td><td>Ryanair · FR9943</td></tr>
+              <tr><td>Vissza · TFS→BUD</td><td>szept. 6. (V) → 7. (H)</td><td>19:20</td><td>01:25</td><td>5ó 5p</td><td>Wizz Air · W62494</td></tr>
+            </tbody>
+          </table>
+          <div class="flight__side">
+            <div class="flight__price">
+              <div class="tot"><span>Teljes költség</span><span>507 514 Ft</span></div>
+            </div>
+            <ul class="flight__extras">
+              <li class="yes">Elsőbbségi beszállás</li>
+              <li class="yes">10 kg-os kézipoggyász</li>
+              <li class="no">Feladott poggyász</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="flight__note">ⓘ A repülőjegyek adatai (járatok, árak, felárak) a <strong>2026.06.07-i állapotot</strong> tükrözik — az árak és az elérhetőség azóta változhattak. Forrás: lastminute.com / booking.com. <strong>A opció</strong> = 4 éjszaka (vissza szept. 5.), <strong>B opció</strong> = 5 éjszaka (vissza szept. 6., hazaérkezés 7-én hajnalban).</div>
+  </section>
+
   <div class="toolbar">
     <h2 class="toolbar__title">Összehasonlító táblázat</h2>
     <button id="sortBtn" class="sortbtn" type="button">↑ Rendezés ár szerint</button>
@@ -289,8 +467,8 @@ const ACCOMMODATIONS = [
     name: "Hovima la Pinta (Excellence)",
     room: "Két hálószobás Excellence apartman",
     location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
-    price: "664 000 Ft",
-    breakdown: "2 × 332 000 Ft",
+    price: "670 000 Ft",
+    breakdown: "2 × 335 000 Ft",
     map: "https://www.google.com/maps/search/?api=1&query=HOVIMA+La+Pinta+Beachfront+Family+Hotel+Costa+Adeje+Tenerife",
     desc: "Fedezd fel az exkluzivitást és a kényelmet a kéthálószobás Excellence apartmanban. A tágas, modern lakás bútorozott teraszáról panorámás tengerre néző kilátás nyílik, az exkluzív Excellence élmény kíséretében. Tágas nappali étkezősarokkal és kanapéággyal, valamint teljesen felszerelt konyha — naponta utántöltött Lavazza® kapszulás kávégéppel. A két különálló hálószoba, a napi takarítás és a párnamenü, illetve a kicsiknek szóló extrák (köntös, papucs, medencetörölköző) teszik teljessé az élményt. Az Excellence vendégek egy privát, tengerparti étteremben reggelizhetnek à la carte kínálattal és helyi termékekből összeállított válogatott büfével.",
     specs: [
@@ -393,8 +571,8 @@ const ACCOMMODATIONS = [
     name: "Flamingo Suites Boutique Hotel",
     room: "Suite Real (kétszintes royal suite)",
     location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
-    price: "574 000 Ft",
-    breakdown: "2 × 287 000 Ft",
+    price: "610 000 Ft",
+    breakdown: "2 × 305 000 Ft",
     map: "https://www.google.com/maps/search/?api=1&query=Flamingo+Suites+Boutique+Hotel+Costa+Adeje+Tenerife",
     desc: "A Flamingo Suites Boutique Hotel 4 csillagos butikszállás Costa Adeje egyik legjobb helyén. A Suite Real (Royal Suite) a pihenést és a privát szférát garantálja: kétszintes apartman, amelynek felső szintjén két tágas hálószoba található, mindkettőhöz külön fürdőszobával, az alsó szinten pedig önálló konyha és nagy nappali kapott helyet. Tökéletes választás egy nyugodt Costa Adeje-i nyaraláshoz. A teraszt privát jakuzzi és napozóágyak teszik teljessé.",
     specs: [
@@ -441,7 +619,7 @@ const ACCOMMODATIONS = [
     room: "Kéthálószobás Superior apartman",
     location: "La Caleta, Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
     price: "330 000 Ft",
-    breakdown: "2 × 160 000 Ft",
+    breakdown: "2 × 165 000 Ft",
     map: "https://www.google.com/maps/search/?api=1&query=HOVIMA+Jardin+Caleta+Costa+Adeje+Tenerife",
     desc: "Kényelmes és világos apartmanok a nyugodt La Caleta negyedben, Costa Adeje-ben. A kéthálószobás Superior apartman tágas és világos: két különálló hálószoba a privát szféráért, kényelmes bútorzatú nappali, teljesen felszerelt konyha és komplett fürdőszoba. A bútorozott teraszról oldalirányú tengerre néző kilátás nyílik. Kedvező árú, jó alaplehetőség egy pihentető nyaraláshoz. (A szálloda 1 és 2 hálószobás apartmanokat is kínál.)",
     specs: [
@@ -473,8 +651,8 @@ const ACCOMMODATIONS = [
     name: "Royal Hideaway Corales Suites (Barceló)",
     room: "Deluxe Suite",
     location: "Costa Adeje, Tenerife · Kanári-szigetek, Spanyolország",
-    price: "660 000 Ft",
-    breakdown: "2 × 330 000 Ft",
+    price: "771 000 Ft",
+    breakdown: "2 × 386 000 Ft",
     map: "https://www.google.com/maps/search/?api=1&query=Royal+Hideaway+Corales+Suites+Costa+Adeje+Tenerife",
     desc: "A Royal Hideaway Corales Suites a Barceló Hotel Group 5 csillagos luxusmárkája, tengerre néző kilátással és teljes privát szférával. A Deluxe Suite kiemelkedik tágas teraszával és luxusrészleteivel: nagy, felszerelt konyha és igazán kényelmes terek. Tágas nappali kanapéággyal, valamint külön hálószoba és fürdőszoba – tökéletes a kikapcsolódáshoz Costa Adeje páratlan környezetében.",
     specs: [
@@ -655,66 +833,6 @@ const ACCOMMODATIONS = [
       "https://dwe6atvmvow8k.cloudfront.net/ru/723522/3864971/638914549640850334.jpg"
     ]
   }
-  ,
-  {
-    name: "Parque Santiago II",
-    room: "Kéthálószobás apartman · privát medence",
-    location: "Playa de las Américas, Tenerife · Kanári-szigetek, Spanyolország",
-    price: "462 000 Ft",
-    breakdown: "2 × 231 000 Ft",
-    map: "https://www.google.com/maps/search/?api=1&query=Parque+Santiago+II+Avenida+Rafael+Puig+Lluvina+32+Playa+de+las+Americas+Tenerife",
-    desc: "Ehhez a tágas apartmanhoz privát medence tartozik. A lakás 1 nappalival, 2 különálló hálószobával és 3 fürdőszobával (zuhanyzóval és hajszárítóval) rendelkezik. A jól felszerelt konyhában főzőlap, hűtőszekrény, mosogatógép és konyhai eszközök várják a vendégeket. A légkondicionált apartmanhoz síkképernyős tévé, mosógép, tea- és kávéfőző, ülősarok, valamint tengerre néző kilátás tartozik. Az egységben 4 ágy található. Cím: Avenida Rafael Puig Lluvina 32, Parque Santiago II, Playa de las Américas.",
-    specs: [
-      { icon:"size",   text:"70 m² · önálló apartman" },
-      { icon:"bed",    text:"2 háló (4 ágy) + kanapéágy" },
-      { icon:"sea",    text:"Tengerre néző · privát medence" },
-      { icon:"guests", text:"3 fürdőszoba · 4 felnőtt" }
-    ],
-    features: [
-      "Privát medence",
-      "Hálószoba 1: 1 franciaágy · Hálószoba 2: 2 franciaágy",
-      "Nappali kanapéággyal / kihajtható ággyal",
-      "3 fürdőszoba (zuhany/kád) + vendég-WC",
-      "Erkély kültéri bútorokkal",
-      "Teljesen felszerelt konyha (főzőlap, sütő, hűtő, mosogatógép, mikró, vízforraló, kenyérpirító)",
-      "Tea- és kávéfőző, konyhai eszközök",
-      "Étkezősarok étkezőasztallal",
-      "Légkondicionálás",
-      "Síkképernyős tévé",
-      "Ingyenes wifi",
-      "Mosógép és szárítógép",
-      "Vasaló és vasalási lehetőség",
-      "Íróasztal, ülősarok, ruhásszekrény, ruhatartó állvány",
-      "Széf",
-      "Szúnyogháló",
-      "Hajszárító, törölköző, ágynemű, vécépapír",
-      "Lift a felső szintekhez (egyes szintek csak lépcsőn)"
-    ],
-    images: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503223349.jpg?k=99071e73332e2d071f5e221421b4e6e1764b5e831031077492cea53cbead28a6&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503357668.jpg?k=42fa719aa708bc318fede9e767012a1e75e61efdc4b61351f49ca9432f42a2a8&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503359176.jpg?k=27480fc2b15aef45fc2ee71ddc8c6f9737e26992e1afe3649688c91a5db2c88f&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503358307.jpg?k=92f6033cbf2cc2cf8786d3955d8c8ef8ff6e685815fa39eaff7a42e120e54257&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715303.jpg?k=dc888c6b99e076a85cc72b4a85ffdc976a3b3795eec6064bc5d880f8212e1e92&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511488489.jpg?k=e0788e40f12927fdb2b097651c495416c1534c53f07f6541622bb479eba08e9d&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511488000.jpg?k=1dff461e0ba8be6858c5e9056cb4024b3c3d30fdd7165562923118160a1f59ed&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511487931.jpg?k=6436f2af5d78dd6e4b9abf71cc59500b4b2719af94176bf8c680b9d18bce9aa0&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/511487904.jpg?k=0ac86cfae08680cc6d38bfed7b0bde9a4cee5801ce1e06fab0a59fe9f7e0c043&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/323333298.jpg?k=98c7c86640c53043c82c86fe4d5acc0bc5efaa30f056d0efb66f7075f6d7b0f8&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715030.jpg?k=9fa3525653c0207a884183b850ac07718e46cda3e071b55ac957233d52f57cb2&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504716466.jpg?k=68e58c9e5f236e55e208843b0ccbcab062e793e31a55bd5e7f7edf019a51bd30&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504716595.jpg?k=980177afa77c8eec524dd315557e00ce1047c8177171d41cf4a74607f0eceaf5&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504715145.jpg?k=2cda03bcee331687c73fdbe8973799dfa98d48ba8d611020a7358186a6a6d9a7&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008544.jpg?k=89438b8da7b8b62b552251de5de3aeca6b5b2ef7d9d07832cc0fa5f7554fe905&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008539.jpg?k=aa69a075aef92e30140a4fca8c0d5a7295b65a17d04feda68a9e6ccd86c5af7c&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504666525.jpg?k=cfba33c069d4fbc9a73b754b4899235eba69396c5cf00894c296f19edeb10071&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/503357894.jpg?k=0ad9108ad5d729a339029a9bfa58310ee9aeedc3b2f9f0260484f90512454f64&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/288008545.jpg?k=255da9b602ebff07bd36501fd3384a8eecb3f4278552bbf5b8bf195cf51fc231&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/323333219.jpg?k=b730e5c1ec279b3e00f514c53b3cba98978db06345a888c946de69115fbee886&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504714919.jpg?k=06bc6b54d4bfbe9bf09a746ae5d2b6cbf0a801c32614a773de81855c1e944539&o=",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/504714764.jpg?k=763dbb1122f5294521ccbf6dc9634acc1fe50081e144777ad0beba5d3f64c89e&o="
-    ]
-  }
 ];
 
 /* ===================== MEGJEGYZÉSEK ===================== */
@@ -753,18 +871,58 @@ const NOTES = {
   "Home2Book Paradise Playa Las Vistas": [
     "Ez is nagyon olcsó",
     "Kilátás itt nagyon necces"
-  ],
-  "Parque Santiago II": [
-    "Semmi extra, középút"
   ]
 };
+
+/* ===================== TAGEK · KIEMELÉS · SORREND ===================== */
+const TAGS = {
+  "Hovima la Pinta (Excellence)":            { label:"Reggeli + Vacsora",  board:"half" },
+  "Royal Hideaway Corales Suites (Barceló)": { label:"Reggeli",            board:"breakfast" },
+  "Hovima la Pinta (Superior)":              { label:"Reggeli + Vacsora",  board:"half" },
+  "Flamingo Beach Mate":                     { label:"Reggeli",            board:"breakfast" },
+  "Flamingo Suites Boutique Hotel":          { label:"Reggeli",            board:"breakfast" },
+  "Hovima Jardín Caleta":                    { label:"Reggeli és vacsora", board:"half" },
+  "La Caleta Penthouse Costa Adeje":         { label:"Ellátás nélkül",     board:"none" },
+  "Home2Book Paradise Playa Las Vistas":     { label:"Ellátás nélkül",     board:"none" }
+};
+const SELECTED = [
+  "Hovima la Pinta (Excellence)",
+  "Royal Hideaway Corales Suites (Barceló)",
+  "Hovima la Pinta (Superior)"
+];
+const REST_ORDER = [
+  "Flamingo Beach Mate",
+  "Flamingo Suites Boutique Hotel",
+  "Hovima Jardín Caleta",
+  "La Caleta Penthouse Costa Adeje",
+  "Home2Book Paradise Playa Las Vistas"
+];
+// 5 éjszakás ár a kiemelt hoteleknél (a meglévő "2× ár" alatt jelenik meg)
+const PRICE5 = {
+  "Hovima la Pinta (Excellence)":            "840 000 Ft",
+  "Hovima la Pinta (Superior)":              "745 000 Ft",
+  "Royal Hideaway Corales Suites (Barceló)": "1 140 000 Ft"
+};
+const byName = {};
+ACCOMMODATIONS.forEach((a, i) => { byName[a.name] = i; });
+const idsByName = names => names.map(n => byName[n]).filter(i => i !== undefined);
+function tagHTML(name){
+  const t = TAGS[name];
+  return t ? `<span class="tag tag--${t.board}">${t.label}</span>` : '';
+}
 
 /* ===================== RENDER ===================== */
 const list = document.getElementById('list');
 const tableWrap = document.getElementById('tableWrap');
 const priceNum = a => parseInt(String(a.price).replace(/\D/g,''),10) || 0;
+const fmtFt = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+// "2 × X Ft" — a fele, felfelé kerekítve egész ezresre
+const half2 = priceStr => {
+  const n = parseInt(String(priceStr).replace(/\D/g,''),10) || 0;
+  return '2 × ' + fmtFt(Math.ceil(n / 2 / 1000) * 1000) + ' Ft';
+};
 
-function cardHTML(a, ai){
+function cardHTML(a, ai, rank){
   const specsHTML = a.specs.map(s =>
     `<span class="chip">${ICONS[s.icon]||''}${s.text}</span>`).join('');
   const featsHTML = a.features.map(f => `<li>${f}</li>`).join('');
@@ -775,19 +933,30 @@ function cardHTML(a, ai){
   const noteHTML = note
     ? `<div class="note"><span class="note__label">Megjegyzés</span><ul>${note.map(n=>`<li>${n}</li>`).join('')}</ul></div>`
     : '';
+  const isSel = SELECTED.includes(a.name);
+  const ribbon = isSel ? `<div class="acc__ribbon">★ Kiválasztott</div>` : '';
+  const p5 = PRICE5[a.name];
+  const priceInner = `<div class="label">Ár · 4 éjszaka</div>
+          <div class="amount">${a.price}</div>
+          <div class="breakdown">${a.breakdown}</div>${p5 ? `
+          <div class="price-sub">
+            <span class="price-sub__label">5 éjszaka</span>
+            <span class="price-sub__amt">${p5}</span>
+            <span class="breakdown">${half2(p5)}</span>
+          </div>` : ''}`;
   return `
-    <section class="acc" id="acc-${ai}">
+    <section class="acc${isSel ? ' acc--selected' : ''}" id="acc-${ai}">
       <div class="acc__head">
         <div>
-          <div class="acc__idx">Opció ${String(ai+1).padStart(2,'0')}</div>
+          ${ribbon}
+          <div class="acc__idx">Opció ${String(rank).padStart(2,'0')}</div>
           <h2 class="acc__name">${a.name}</h2>
+          <div class="acc__tagrow">${tagHTML(a.name)}</div>
           <div class="acc__room">${a.room}</div>
           <div class="acc__loc">${ICONS.pin}${a.location}</div>
         </div>
         <div class="price-box">
-          <div class="label">Ár</div>
-          <div class="amount">${a.price}</div>
-          <div class="breakdown">${a.breakdown}</div>
+          ${priceInner}
           <a class="btn" href="${a.map}" target="_blank" rel="noopener">Térkép megnyitása ${ICONS.map}</a>
         </div>
       </div>
@@ -811,9 +980,18 @@ function tableHTML(order){
   const rows = order.map(ai => {
     const a = ACCOMMODATIONS[ai];
     const note = NOTES[a.name] || [];
-    return `<tr>
-      <td class="ct-name"><a href="#acc-${ai}"><strong>${a.name}</strong><span>${a.room}</span></a></td>
-      <td class="ct-price">${a.price}<span>${a.breakdown}</span></td>
+    const isSel = SELECTED.includes(a.name);
+    const p5 = PRICE5[a.name];
+    const priceCell = p5
+      ? `<div class="ct-pr"><span class="ct-pl">4 éj</span><strong>${a.price}</strong></div>
+         <span class="ct-2x">${a.breakdown}</span>
+         <div class="ct-pr ct-pr--sub"><span class="ct-pl">5 éj</span>${p5}</div>
+         <span class="ct-2x">${half2(p5)}</span>`
+      : `<div class="ct-pr"><span class="ct-pl">4 éj</span><strong>${a.price}</strong></div>
+         <span class="ct-2x">${a.breakdown}</span>`;
+    return `<tr class="${isSel ? 'ct-sel' : ''}">
+      <td class="ct-name"><a href="#acc-${ai}"><strong>${isSel ? '★ ' : ''}${a.name}</strong><span>${a.room}</span></a><div class="ct-tag">${tagHTML(a.name)}</div></td>
+      <td class="ct-price">${priceCell}</td>
       <td class="ct-note"><ul>${note.map(n=>`<li>${n}</li>`).join('')}</ul></td>
     </tr>`;
   }).join('');
@@ -824,15 +1002,25 @@ function tableHTML(order){
 }
 
 let sorted = false;
-function currentOrder(){
-  const idx = ACCOMMODATIONS.map((_, i) => i);
-  if(sorted) idx.sort((x, y) => priceNum(ACCOMMODATIONS[x]) - priceNum(ACCOMMODATIONS[y]));
-  return idx;
-}
+function defaultOrder(){ return [...idsByName(SELECTED), ...idsByName(REST_ORDER)]; }
+function sortedOrder(){ return defaultOrder().slice().sort((x, y) => priceNum(ACCOMMODATIONS[x]) - priceNum(ACCOMMODATIONS[y])); }
+
 function render(){
-  const order = currentOrder();
+  const order = sorted ? sortedOrder() : defaultOrder();
   tableWrap.innerHTML = tableHTML(order);
-  list.innerHTML = order.map(ai => cardHTML(ACCOMMODATIONS[ai], ai)).join('');
+
+  let html = '';
+  if(sorted){
+    html = order.map((ai, i) => cardHTML(ACCOMMODATIONS[ai], ai, i + 1)).join('');
+  } else {
+    const sel = idsByName(SELECTED);
+    const rest = idsByName(REST_ORDER);
+    html += `<div class="group-head"><h2>★ Kiválasztott lehetőségek</h2><p>A három kiemelt favorit</p></div>`;
+    html += sel.map((ai, i) => cardHTML(ACCOMMODATIONS[ai], ai, i + 1)).join('');
+    html += `<div class="group-head group-head--muted"><h2>További lehetőségek</h2></div>`;
+    html += rest.map((ai, i) => cardHTML(ACCOMMODATIONS[ai], ai, sel.length + i + 1)).join('');
+  }
+  list.innerHTML = html;
   list.querySelectorAll('.track').forEach(t => t.addEventListener('scroll', syncCarousels, {passive:true}));
   syncCarousels();
 }
